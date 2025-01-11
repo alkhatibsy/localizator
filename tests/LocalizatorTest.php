@@ -4,10 +4,7 @@ namespace Amirami\Localizator\Tests;
 
 class LocalizatorTest extends TestCase
 {
-    /**
-     * @return void
-     */
-    public function testLocalizeCommandBasic(): void
+    public function test_localize_command_basic(): void
     {
         $this->createTestView("{{ __('Localizator') }} {{ __('app.name') }}");
 
@@ -29,10 +26,7 @@ class LocalizatorTest extends TestCase
         self::flushDirectories('lang', 'views');
     }
 
-    /**
-     * @return void
-     */
-    public function testLocalizeCommandWithDefinedLocales(): void
+    public function test_localize_command_with_defined_locales(): void
     {
         $this->createTestView("{{ __('Localizator') }} {{ __('app.name') }}");
 
@@ -58,10 +52,7 @@ class LocalizatorTest extends TestCase
         self::flushDirectories('lang', 'views');
     }
 
-    /**
-     * @return void
-     */
-    public function testLocalizeCommandWithSortingKeys(): void
+    public function test_localize_command_with_sorting_keys(): void
     {
         $this->createTestView("{{ __('Delete') }} {{ __('Cancel') }} {{ __('Login') }}", 'test-1');
         $this->createTestView("{{ __('auth.throttle') }} {{ __('auth.failed') }} {{ __('auth.password') }}", 'test-2');
@@ -94,10 +85,7 @@ class LocalizatorTest extends TestCase
         self::flushDirectories('lang', 'views');
     }
 
-    /**
-     * @return void
-     */
-    public function testLocalizeCommandByMergingTheExistingTranslations(): void
+    public function test_localize_command_by_merging_the_existing_translations(): void
     {
         $this->createTestView("{{ __('Delete') }} {{ __('Cancel') }} {{ __('Login') }}", 'test-1');
         $this->createTestView("{{ __('auth.throttle') }} {{ __('auth.failed') }} {{ __('auth.password') }}", 'test-2');
@@ -138,10 +126,7 @@ class LocalizatorTest extends TestCase
         self::flushDirectories('lang', 'views');
     }
 
-    /**
-     * @return void
-     */
-    public function testLocalizeCommandWhereKeysAreEscapedWithSlashes(): void
+    public function test_localize_command_where_keys_are_escaped_with_slashes(): void
     {
         $this->createTestView("{{ __('Amir\'s PC') }} {{ __('Jacob\'s Ladder') }} {{ __('mom\'s spaghetti') }}");
 
@@ -166,7 +151,7 @@ class LocalizatorTest extends TestCase
         self::flushDirectories('lang', 'views');
     }
 
-    public function testLocalizeCommandWithMultilineMessages(): void
+    public function test_localize_command_with_multiline_messages(): void
     {
         $this->createTestView("__(\n'stand with ukraine'\n)");
 
@@ -189,7 +174,7 @@ class LocalizatorTest extends TestCase
         self::flushDirectories('lang', 'views');
     }
 
-    public function testLocalizeCommandWithMultilineMessagesAndSpaces(): void
+    public function test_localize_command_with_multiline_messages_and_spaces(): void
     {
         $this->createTestView("{{ __(\n   'stand with ukraine'   \n) }}");
 
@@ -212,7 +197,7 @@ class LocalizatorTest extends TestCase
         self::flushDirectories('lang', 'views');
     }
 
-    public function testIntTranslationKeysAreBeingSavedAsStrings(): void
+    public function test_int_translation_keys_are_being_saved_as_strings(): void
     {
         $this->createTestView("{{ __('errors.401.title') }}<br/>{{ __('errors.401.message') }}");
 
@@ -258,7 +243,7 @@ PHP;
         $this->assertSame(preg_replace('/\r\n|\r|\n/', "\n", $expected), $contents);
     }
 
-    public function testIntTranslationNestedKeysAreBeingSavedAsStrings(): void
+    public function test_int_translation_nested_keys_are_being_saved_as_strings(): void
     {
         $this->createTestView("{{ __('errors.4.401') }}<br/>{{ __('errors.4.404') }}");
 
@@ -296,7 +281,7 @@ PHP;
         $this->assertSame(preg_replace('/\r\n|\r|\n/', "\n", $expected), $contents);
     }
 
-    public function testRemoveMissingKeys(): void
+    public function test_remove_missing_keys(): void
     {
         self::flushDirectories('lang', 'views');
 
@@ -334,7 +319,7 @@ PHP;
         self::flushDirectories('lang', 'views');
     }
 
-    public function testDirectoriesAreBeingExcluded(): void
+    public function test_directories_are_being_excluded(): void
     {
         mkdir(resource_path('views/sub1'), 0755);
         mkdir(resource_path('views/sub2'), 0755);

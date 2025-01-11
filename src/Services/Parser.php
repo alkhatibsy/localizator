@@ -34,9 +34,6 @@ class Parser
 
     /**
      * Parser constructor.
-     *
-     * @param Repository $config
-     * @param FileFinder $finder
      */
     public function __construct(Repository $config, FileFinder $finder)
     {
@@ -46,9 +43,6 @@ class Parser
         $this->jsonKeys = new JsonKeyCollection;
     }
 
-    /**
-     * @return void
-     */
     public function parseKeys(): void
     {
         $this->finder
@@ -69,19 +63,11 @@ class Parser
             });
     }
 
-    /**
-     * @param $key
-     * @return bool
-     */
     protected function isDotKey($key): bool
     {
         return (bool) preg_match('/^[^.\s]\S*\.\S*[^.\s]$/', $key);
     }
 
-    /**
-     * @param SplFileInfo $file
-     * @return Collection
-     */
     protected function getStrings(SplFileInfo $file): Collection
     {
         $keys = new Collection;
@@ -95,20 +81,11 @@ class Parser
         return $keys->count() ? $keys->flatten()->unique() : $keys;
     }
 
-    /**
-     * @param string $function
-     * @return string
-     */
     protected function searchPattern(string $function): string
     {
         return '/('.$function.')\([\r\n\s]{0,}\h*[\'"](.+)[\'"]\h*[\r\n\s]{0,}[),]/U';
     }
 
-    /**
-     * @param string $locale
-     * @param string $type
-     * @return Translatable
-     */
     public function getKeys(string $locale, string $type): Translatable
     {
         switch ($type) {
@@ -125,12 +102,6 @@ class Parser
         throw new RuntimeException('Export type not recognized! Only recognized types are "default" and "json".');
     }
 
-    /**
-     * @param string $locale
-     * @param string $type
-     * @param Collection $values
-     * @return Collection
-     */
     protected function combineValues(string $locale, string $type, Collection $values): Collection
     {
         if ($type === 'default' || $locale !== config('app.locale')) {

@@ -7,11 +7,6 @@ use RuntimeException;
 
 trait CreatesTestFiles
 {
-    /**
-     * @param string $contents
-     * @param string $fileName
-     * @return void
-     */
     protected function createTestFile(string $contents, string $fileName): void
     {
         file_put_contents(
@@ -20,11 +15,6 @@ trait CreatesTestFiles
         );
     }
 
-    /**
-     * @param string $contents
-     * @param string $fileName
-     * @return void
-     */
     protected function createTestView(string $contents, string $fileName = 'test'): void
     {
         $this->createTestFile(
@@ -33,11 +23,6 @@ trait CreatesTestFiles
         );
     }
 
-    /**
-     * @param string $contents
-     * @param string $fileName
-     * @return void
-     */
     protected function createTestLangFile(string $contents, string $fileName): void
     {
         file_put_contents(
@@ -46,11 +31,6 @@ trait CreatesTestFiles
         );
     }
 
-    /**
-     * @param array $contents
-     * @param string $locale
-     * @return void
-     */
     protected function createTestJsonLangFile(array $contents, string $locale): void
     {
         $this->createTestLangFile(
@@ -59,12 +39,6 @@ trait CreatesTestFiles
         );
     }
 
-    /**
-     * @param array $contents
-     * @param string $fileName
-     * @param string $locale
-     * @return void
-     */
     protected function createTestDefaultLangFile(array $contents, string $fileName, string $locale): void
     {
         $writer = app(DefaultWriter::class);

@@ -4,19 +4,12 @@ namespace Amirami\Localizator\Tests\Concerns;
 
 trait ImportsLangFiles
 {
-    /**
-     * @param string $fileName
-     * @return string
-     */
     protected function getLangFilePath(string $fileName): string
     {
         return lang_path($fileName);
     }
 
     /**
-     * @param string $locale
-     * @param string $fileName
-     * @return array
      * @noinspection PhpIncludeInspection
      */
     protected function getDefaultLangContents(string $locale, string $fileName): array
@@ -24,10 +17,6 @@ trait ImportsLangFiles
         return require $this->getLangFilePath($locale.DIRECTORY_SEPARATOR."{$fileName}.php");
     }
 
-    /**
-     * @param string $locale
-     * @return array
-     */
     protected function getJsonLangContents(string $locale): array
     {
         return json_decode(

@@ -8,16 +8,13 @@ use Illuminate\Support\Collection;
 
 class DefaultKeyCollection extends Translatable
 {
-    /**
-     * @return Collection
-     */
     public function sortAlphabetically(): Collection
     {
         return $this->sortKeys(SORT_NATURAL | SORT_FLAG_CASE);
     }
 
     /**
-     * @param mixed $items
+     * @param  mixed  $items
      * @return static
      */
     public function merge($items): self
@@ -26,7 +23,7 @@ class DefaultKeyCollection extends Translatable
     }
 
     /**
-     * @param mixed $items
+     * @param  mixed  $items
      * @return static
      */
     public function intersectByKeys($items): self

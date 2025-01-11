@@ -8,10 +8,6 @@ use Illuminate\Support\Collection;
 
 class JsonKeyCollector implements Collectable
 {
-    /**
-     * @param string $locale
-     * @return Collection
-     */
     public function getTranslated(string $locale): Collection
     {
         $file = lang_path("{$locale}.json");

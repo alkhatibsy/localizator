@@ -27,10 +27,6 @@ class LocalizeCommand extends Command
 
     /**
      * Execute the localize command.
-     *
-     * @param Localizator $localizator
-     * @param Parser $parser
-     * @return int
      */
     public function handle(Localizator $localizator, Parser $parser): int
     {
@@ -73,9 +69,6 @@ class LocalizeCommand extends Command
         return 0;
     }
 
-    /**
-     * @return array
-     */
     protected function getLocales(): array
     {
         return $this->argument('lang')
@@ -83,9 +76,6 @@ class LocalizeCommand extends Command
             : [config('app.locale')];
     }
 
-    /**
-     * @return array
-     */
     protected function getTypes(): array
     {
         return array_keys(array_filter(config('localizator.localize')));

@@ -12,9 +12,6 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
 {
-    /**
-     * @return void
-     */
     public function boot(): void
     {
         if ($this->app->runningInConsole()) {
@@ -26,9 +23,6 @@ class ServiceProvider extends BaseServiceProvider
         }
     }
 
-    /**
-     * @return void
-     */
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/localizator.php', 'localizator');
@@ -36,9 +30,6 @@ class ServiceProvider extends BaseServiceProvider
         $this->registerContainerClasses();
     }
 
-    /**
-     * @return void
-     */
     private function registerContainerClasses(): void
     {
         $this->app->singleton('localizator', Localizator::class);

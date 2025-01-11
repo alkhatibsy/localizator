@@ -15,17 +15,12 @@ class FileFinder
 
     /**
      * FileFinder constructor.
-     *
-     * @param Repository $config
      */
     public function __construct(Repository $config)
     {
         $this->config = $config->get('localizator');
     }
 
-    /**
-     * @return Collection
-     */
     public function getFiles(): Collection
     {
         $directories = array_map(static function ($dir) {

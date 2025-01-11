@@ -15,10 +15,8 @@ class TestCase extends Orchestra
 
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
@@ -26,7 +24,7 @@ class TestCase extends Orchestra
     /**
      * Get package providers.
      *
-     * @param \Illuminate\Foundation\Application|\Illuminate\Contracts\Foundation\Application $app
+     * @param  \Illuminate\Foundation\Application|\Illuminate\Contracts\Foundation\Application  $app
      * @return array|string[]
      */
     protected function getPackageProviders($app): array
@@ -39,19 +37,13 @@ class TestCase extends Orchestra
     /**
      * Define environment setup.
      *
-     * @param \Illuminate\Foundation\Application|\Illuminate\Contracts\Foundation\Application $app
-     * @return void
+     * @param  \Illuminate\Foundation\Application|\Illuminate\Contracts\Foundation\Application  $app
      */
     public function getEnvironmentSetUp($app): void
     {
         $app->setBasePath(__DIR__.DIRECTORY_SEPARATOR.'Mock');
     }
 
-    /**
-     * @param string $fileName
-     * @param string $message
-     * @return void
-     */
     protected static function assertLangFileExists(string $fileName, string $message = ''): void
     {
         static::assertFileExists(
@@ -61,9 +53,7 @@ class TestCase extends Orchestra
     }
 
     /**
-     * @param string|string[] $locales
-     * @param array $fileNames
-     * @param string $message
+     * @param  string|string[]  $locales
      */
     protected static function assertDefaultLangFilesExist($locales, array $fileNames, string $message = ''): void
     {
@@ -77,9 +67,7 @@ class TestCase extends Orchestra
     }
 
     /**
-     * @param string|string[] $locales
-     * @param string $message
-     * @return void
+     * @param  string|string[]  $locales
      */
     protected static function assertJsonLangFilesExist($locales, string $message = ''): void
     {
@@ -93,8 +81,7 @@ class TestCase extends Orchestra
     /**
      * Delete all files from selected directories in resources folder.
      *
-     * @param string ...$dirNames
-     * @return void
+     * @param  string  ...$dirNames
      */
     protected static function flushDirectories(...$dirNames): void
     {
@@ -102,7 +89,7 @@ class TestCase extends Orchestra
             return resource_path($dirName);
         }, $dirNames);
 
-        $finder = (new Finder())->in($dirNames);
+        $finder = (new Finder)->in($dirNames);
         $directories = [];
 
         foreach ($finder as $fileInfo) {

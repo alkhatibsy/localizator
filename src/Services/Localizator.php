@@ -8,23 +8,11 @@ use Amirami\Localizator\Contracts\Writable;
 
 class Localizator
 {
-    /**
-     * @param Translatable $keys
-     * @param string $type
-     * @param string $locale
-     * @return void
-     */
     public function localize(Translatable $keys, string $type, string $locale, bool $removeMissing): void
     {
         $this->getWriter($type)->put($locale, $this->collect($keys, $type, $locale, $removeMissing));
     }
 
-    /**
-     * @param Translatable $keys
-     * @param string $type
-     * @param string $locale
-     * @return Translatable
-     */
     protected function collect(Translatable $keys, string $type, string $locale, bool $removeMissing): Translatable
     {
         return $keys
@@ -36,19 +24,11 @@ class Localizator
                 });
     }
 
-    /**
-     * @param string $type
-     * @return Writable
-     */
     protected function getWriter(string $type): Writable
     {
         return app("localizator.writers.$type");
     }
 
-    /**
-     * @param string $type
-     * @return Collectable
-     */
     protected function getCollector(string $type): Collectable
     {
         return app("localizator.collector.$type");
