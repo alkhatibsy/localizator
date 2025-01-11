@@ -51,6 +51,7 @@ class Parser
                 return $this->getStrings($file);
             })
             ->flatten()
+            ->reject(fn ($string) => str($string)->contains('::'))
             ->map(function (string $string) {
                 return stripslashes($string);
             })
