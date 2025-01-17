@@ -106,7 +106,12 @@ class Parser
     protected function combineValues(string $locale, string $type, Collection $values): Collection
     {
         if ($type === 'default' || $locale !== config('app.locale')) {
-            return (new Collection)->pad($values->count(), '');
+            return $values->map(fn ($value): string => str($value)
+                ->beforeLast('.')
+                ->afterLast('.')
+                ->replace('_', ' ')
+                ->ucfirst()
+            );
         }
 
         return $values;
